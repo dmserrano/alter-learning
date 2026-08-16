@@ -43,7 +43,7 @@ Each module is tagged with one of four **track types** — technical, conceptual
 
 ## Credits
 
-The five-role **ALTER** framework (Advisor, Librarian, Tutor, Editor, Roommate) is inspired by a "personal university" AI-learning system presented in a YouTube video. This repository is an independent implementation of that idea as Claude Code skills — the code and prose here are original.
+The five-role **ALTER** framework (Advisor, Librarian, Tutor, Editor, Roommate) is inspired by the ["Harvard in a Box" video by Sandeep Swadia](https://youtu.be/3k6fR5EdLAo). This repository is an independent implementation of that idea as Claude Code skills — the code and prose here are original.
 
 ## License
 
