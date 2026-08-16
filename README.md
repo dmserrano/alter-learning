@@ -12,15 +12,15 @@ ALTER turns any topic into a self-directed learning pathway, captured as Markdow
 
 ## Status
 
-Currently included: **`alter`** (coordinator) and **`advisor`** (planning). The remaining roles — librarian, tutor, editor, roommate — are referenced by the framework and are on the roadmap.
+Currently included: **`alter`** (coordinator), **`advisor`** (planning), and **`librarian`** (source-gathering). The remaining roles — tutor, editor, roommate — are referenced by the framework and are on the roadmap.
 
 ## Install
 
 Claude Code skills are plain folders — no build or packaging step. Copy the skill folders into your skills directory:
 
 ```bash
-git clone https://github.com/<your-username>/alter.git
-cp -R alter/alter alter/advisor ~/.claude/skills/
+git clone https://github.com/<your-username>/alter-learning.git
+cp -R alter-learning/alter alter-learning/advisor alter-learning/librarian ~/.claude/skills/
 ```
 
 Then in Claude Code, run `/alter` to start or resume a pathway.
