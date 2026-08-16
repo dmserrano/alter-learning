@@ -6,10 +6,10 @@ ALTER builds a **personal university**: a self-directed learning pathway for one
 
 ## Where topics live
 
-Every topic is a folder under `~/workspace/university/`. One topic per folder.
+Every topic is a folder in the **current working directory** — the directory the skill was invoked from. One topic per folder; a topic folder is any subdirectory containing a `plan.md`. (Run the ALTER skills from wherever you want your learning to live — e.g. a dedicated `university/` directory — and topics accumulate there.)
 
 ```
-~/workspace/university/
+./                     # the directory you ran the skill from
   <topic-slug>/
     README.md          # "you are here" map — alter regenerates this every run
     plan.md            # advisor: destination, baseline, module sequence, cut-list
@@ -55,7 +55,7 @@ Every file ALTER generates orients the reader:
 
 ## Finding the active topic
 
-A sub-skill invoked directly (not through `alter`) resolves its topic this way: use the slug if the user named one; otherwise pick the most-recently-modified folder under `~/workspace/university/` and **confirm it with the user before acting**. Never guess silently.
+A sub-skill invoked directly (not through `alter`) resolves its topic this way: use the slug if the user named one; otherwise pick the most-recently-modified topic folder in the current working directory and **confirm it with the user before acting**. Never guess silently.
 
 ## Scheduling (opt-in)
 

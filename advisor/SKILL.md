@@ -27,7 +27,7 @@ While interviewing, form a view of each module's **track type** (technical / con
 
 ## Write the plan
 
-When the five decisions are settled, propose the module sequence back to the learner in the chat and adjust until they're happy. Then create the topic folder under `~/workspace/university/` and write `plan.md`:
+When the five decisions are settled, propose the module sequence back to the learner in the chat and adjust until they're happy. Then create the topic folder in the current working directory and write `plan.md`:
 
 - Open with the self-doc blockquote (`> How to use: …`).
 - **Destination**, **Baseline**, and **Cut list** sections, capturing the interview.

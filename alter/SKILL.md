@@ -12,11 +12,11 @@ Read [`reference/conventions.md`](reference/conventions.md) once per session bef
 ## Route on what you were given
 
 - **No topic named** → run *List topics*.
-- **A topic named** → resolve its slug (per conventions). If the folder exists under `~/workspace/university/`, run *Drive an existing topic*. If it does not, run *Start a new topic*.
+- **A topic named** → resolve its slug (per conventions). If a topic folder with that slug exists in the current working directory, run *Drive an existing topic*. If it does not, run *Start a new topic*.
 
 ## List topics
 
-Scan `~/workspace/university/` for topic folders. For each, read `plan.md` and `progress.md` and report one line: topic name, module count done / total, and the suggested next action. If there are none, say so and offer to start one. End by asking which topic to work on.
+Scan the current working directory for topic folders (subdirectories containing a `plan.md`). For each, read `plan.md` and `progress.md` and report one line: topic name, module count done / total, and the suggested next action. If there are none, say so and offer to start one. End by asking which topic to work on.
 
 ## Start a new topic
 
