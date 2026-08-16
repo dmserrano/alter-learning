@@ -1,6 +1,6 @@
 ---
 name: alter
-description: Coordinator for the ALTER self-learning framework — turns a topic into a personal-university pathway and drives it. Use when the user wants to learn a new topic, build a study plan or curriculum, resume or check progress on a learning pathway, or says "teach myself X" / "university in a box". Dispatches the advisor, librarian, tutor, editor, and roommate skills.
+description: Coordinator for the ALTER self-learning framework — turns a topic into a personal-university pathway and drives it. Use when the user wants to learn a new topic, build a study plan or curriculum, resume or check progress on a learning pathway, or says "teach myself X" / "build my own curriculum". Dispatches the advisor, librarian, tutor, editor, and roommate skills.
 ---
 
 # alter
