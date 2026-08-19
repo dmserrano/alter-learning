@@ -33,6 +33,19 @@ Every topic is a folder in the **current working directory** — the directory t
 
 **Slug**: derive `<topic-slug>` from the topic name in lower-kebab-case (`"Claude dev skills"` → `claude-dev-skills`). Offer it; let the user override.
 
+## Migrating an existing topic
+
+When this layout changes, an older topic folder is brought up to date by **reconciling it against the current layout above** — no separate migration tool needed. Any ALTER skill (usually `alter`, since it already reads the whole topic) can do it on request. The procedure:
+
+1. **Read this file first** so you're moving toward the *current* layout, not a remembered one.
+2. **Detect the old shape.** Compare what's on disk to the layout above and list every file/dir that has moved. The most recent move consolidated per-module files under `modules/NN-<name>/`: `tutorial-NN.md` → `modules/NN-<name>/tutorial.md`, `guide-NN.md` → `.../guide.md`, `exercises/NN-<name>/` → `.../exercises/`, `milestones/NN-<name>/` → `.../milestone/`, `feedback/NN-<name>-review.md` → `.../review.md`. Topic-level files (`plan.md`, `reading-list.md`, `prompts.md`, `progress.md`, `roommate.md`, `capstone-<name>/`) stay put.
+3. **Show the move plan and confirm before touching anything** — a rename table, oldest-to-newest. Moving learner work is not something to do silently.
+4. **Move with `git mv`** where the topic is a git repo (preserves history); plain move otherwise. Preserve file **content** exactly — only the path changes. Drop the now-redundant module number from filenames inside the numbered dir (`tutorial.md`, not `tutorial-03.md`).
+5. **Fix internal references.** Update relative links between the moved files (e.g. a `README.md` pointing at `../milestones/03-x/`) and add any newly-required `README.md` for a moved directory that lacks one.
+6. **Regenerate the topic `README.md`** last (that's `alter`'s job) so the "you are here" map reflects the new paths and the Due-for-review line.
+
+Migrations are expected to be **rare and mechanical**; keep this a documented reconciliation, not a bespoke script. If layout churn ever becomes frequent, that's the signal to extract a dedicated migrate skill — not before.
+
 ## Track types
 
 The Advisor tags every module in `plan.md` with one `type`. The type is the switch that decides how the Librarian, Tutor, and milestone behave for that module. Four types:
