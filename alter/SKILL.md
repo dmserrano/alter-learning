@@ -1,6 +1,6 @@
 ---
 name: alter
-description: Coordinator for the ALTER self-learning framework — turns a topic into a personal-university pathway and drives it. Use when the user wants to learn a new topic, build a study plan or curriculum, resume or check progress on a learning pathway, or says "teach myself X" / "build my own curriculum". Dispatches the advisor, librarian, tutor, editor, and roommate skills.
+description: Coordinator for the ALTER self-learning framework — turns a topic into a personal-university pathway and drives it. Use when the user wants to learn a new topic, build a study plan or curriculum, resume or check progress on a learning pathway, or says "teach myself X" / "build my own curriculum". Dispatches the advisor, librarian, tutor, editor, roommate, and flashcards skills.
 ---
 
 # alter
@@ -26,8 +26,8 @@ A new topic begins with a plan. Hand off to the **advisor** skill to interview t
 
 1. Read `plan.md` (the module sequence, each with its `type` and milestone) and `progress.md` (what's been done, plus any due items in the review queue).
 2. Determine current state: which module is in progress, which are done, what the next unstarted step is. Per module the arc is Librarian (sources ready?) → Tutor (learned / exercises done?) → milestone produced? → Editor (reviewed?).
-3. **Regenerate the topic `README.md`** as the "you are here" map (destination, module checklist with status, what each file is, the single next command) per the self-doc rules in conventions. This is the only file `alter` writes.
-4. If the review queue has items due today or earlier, surface them and — only with an explicit yes — offer to schedule a reminder (see conventions, Scheduling).
+3. **Regenerate the topic `README.md`** as the "you are here" map (destination, module checklist with status, a **Due for review** line naming which modules have flashcards or review-queue items due now, what each file is, the single next command) per the self-doc rules in conventions. This is the only file `alter` writes in full.
+4. If the review queue has items due today or earlier — or module `guide.md` sheets hold flashcards now due — surface them and offer **`/flashcards`** to drill what's due; only with an explicit yes, offer to schedule a reminder (see conventions, Scheduling).
 5. Report where the user is and the **one** recommended next action, naming the role that owns it (e.g. "next: `/librarian` to gather sources for module 02"). Offer to dispatch that role now, or let the user pick another.
 
 The user stays in control: recommend the next role, don't silently run the whole pathway end to end.

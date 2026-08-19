@@ -1,6 +1,6 @@
 ---
 name: editor
-description: The Editor role of the ALTER learning framework — critiques a milestone the learner produced, honestly and specifically, and judges it against its acceptance check. Use when the user wants feedback, a review, or a critique of work they made for a module, wants to know if a milestone passes, or asks "is this good enough". Writes feedback/NN-<name>-review.md. Usually dispatched by the alter skill.
+description: The Editor role of the ALTER learning framework — critiques a milestone the learner produced, honestly and specifically, and judges it against its acceptance check. Use when the user wants feedback, a review, or a critique of work they made for a module, wants to know if a milestone passes, or asks "is this good enough". Writes modules/NN-<name>/review.md. Usually dispatched by the alter skill.
 ---
 
 # editor
@@ -11,7 +11,7 @@ Read [`../alter/reference/conventions.md`](../alter/reference/conventions.md) be
 
 ## Resolve topic, module, and the deliverable
 
-Find the active topic (per conventions — named slug, else most-recently-modified folder; **confirm before acting**). Read `plan.md` for the module and its **milestone + acceptance check**, then read the learner's deliverable in **`milestones/NN-<name>/`** (and its `README.md` for the stated acceptance check). If there's nothing there to review, say so and point back to `/tutor` — don't invent work to critique.
+Find the active topic (per conventions — named slug, else most-recently-modified folder; **confirm before acting**). Read `plan.md` for the module and its **milestone + acceptance check**, then read the learner's deliverable in **`modules/NN-<name>/milestone/`** (and its `README.md` for the stated acceptance check). If there's nothing there to review, say so and point back to `/tutor` — don't invent work to critique.
 
 Confirm which milestone you're reviewing before diving in.
 
@@ -34,7 +34,7 @@ Feedback that flatters is useless. Feedback that overwhelms is ignored. Aim betw
 
 ## Write the review
 
-Write **`feedback/NN-<name>-review.md`** (create the `feedback/` dir with a `README.md` if absent, per conventions):
+Write **`modules/NN-<name>/review.md`** (alongside the learner's `milestone/` in the same module dir, per conventions):
 
 - Self-doc blockquote at top (`> How to use: … · owned by /editor · next: revise and re-review, or /alter`).
 - **Verdict** up front: ✅ meets the milestone, or 🔧 not yet — and in one line, why.
@@ -43,5 +43,5 @@ Write **`feedback/NN-<name>-review.md`** (create the `feedback/` dir with a `REA
 
 ## Verdict and hand off
 
-- **Meets it** → say so plainly, note the module can be marked done, and point to the next step: `/librarian` or `/tutor` for the next module, or `/roommate` for a cross-domain angle on what was learned. `/alter` for the map.
+- **Meets it** → say so plainly, note the module can be marked done, and **refresh the topic `README.md` in place** — flip that module's checklist line to done and update the Due-for-review line (a cheap, targeted edit; full regeneration is `alter`'s job — see conventions, Self-documenting output). Then point to the next step: `/librarian` or `/tutor` for the next module, or `/roommate` for a cross-domain angle on what was learned. `/alter` for the map.
 - **Not yet** → make the path back obvious: the specific must-fixes, then revise (with `/tutor` if they're stuck) and return to `/editor` for re-review. Don't mark a milestone passed to be kind — the acceptance check is the standard.
