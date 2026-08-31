@@ -9,6 +9,14 @@ A call-response flashcard drill over an ALTER topic. The Tutor writes review she
 
 Read [`../alter/reference/conventions.md`](../alter/reference/conventions.md) before acting — it defines the topic folder layout, the module dirs, and the `progress.md` review queue this skill leans on.
 
+## Where this runs (file workspace required)
+
+This drill is **file-backed**: it reads cards from `modules/NN-<name>/guide.md`, writes each card's `<!-- box N · due YYYY-MM-DD -->` schedule back into that file, and updates `progress.md`. Spaced repetition *is* that persistence — without it, a session is just a one-off quiz with no memory of what's due next.
+
+So it needs an environment with a **working directory and file read/write tools**: the Claude Code CLI, or the Claude Code desktop / web / IDE surfaces with the topic folder open. It is **not** designed for the plain Claude client (the claude.ai app or mobile) running the skill with no attached project — there's no working directory to find the topic in, no `guide.md` to read, and no way to persist the Leitner schedule. In that setting the drill can't gather cards, or degrades to an ephemeral quiz whose grades are lost the moment the chat ends.
+
+If you're invoked where no file workspace is available, **say so plainly and stop** rather than faking a drill: e.g. *"Flashcards needs the topic's files, so run `/flashcards` from Claude Code with the topic folder open — dictating in the app won't save your review schedule."* Point dictation-on-the-phone users at Claude Code (or a synced checkout) for the same topic folder.
+
 ## Resolve topic and gather cards
 
 1. **Find the active topic** (per conventions — named slug, else most-recently-modified topic folder in the working directory; **confirm before drilling**).
