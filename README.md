@@ -34,10 +34,11 @@ Run the ALTER skills from the directory you want your learning to live in (e.g. 
 ```
 <topic-slug>/
   plan.md          # advisor: destination, baseline, module sequence, milestones
-  reading-list.md  # librarian: ranked vetted sources
+  reading-list.md  # generated index of the per-module reading lists (regenerated, like README)
   progress.md      # tutor: dated session log + review queue
   modules/
     NN-<name>/     # everything for one module
+      reading-list.md # librarian: ranked vetted sources for this module (source of truth)
       tutorial.md  # tutor: step-by-step build (technical modules)
       guide.md     # tutor: review sheet + flashcards (drilled by /flashcards)
       exercises/   # tutor: scaffolded work you build in
