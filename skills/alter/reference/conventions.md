@@ -48,6 +48,8 @@ When this layout changes, an older topic folder is brought up to date by **recon
 5. **Fix internal references.** Update relative links between the moved files (e.g. a `README.md` pointing at `../milestones/03-x/`) and add any newly-required `README.md` for a moved directory that lacks one.
 6. **Regenerate the topic `README.md`** last (that's `alter`'s job) so the "you are here" map reflects the new paths and the Due-for-review line.
 
+**Additive fields need no migration.** A new optional field defaults to prior behavior when absent: a `plan.md` with no `Build mode` line reads as `manual` (ALTER's original behavior), so existing topics keep working untouched. The Advisor adds a build mode to an old topic only on request, as a plan revision — not part of a layout reconciliation.
+
 Migrations are expected to be **rare and mechanical**; keep this a documented reconciliation, not a bespoke script. If layout churn ever becomes frequent, that's the signal to extract a dedicated migrate skill — not before.
 
 ## Track types
@@ -59,9 +61,41 @@ The Advisor tags every module in `plan.md` with one `type`. The type is the swit
 - **language** — a natural language. Librarian favors grammar references, graded input, native media. Tutor runs vocab/grammar drills and conversation practice with live correction, and leans on the review queue for spaced repetition. Milestone defaults to a **conversation or translation checkpoint**.
 - **practical** — a real-world doing skill (cooking, chess, public speaking, drawing). Librarian favors technique guides, exemplars, demos. Tutor runs deliberate-practice drills: learner does it, describes or records it, gets feedback. Milestone defaults to a **performance artifact** the Editor reviews.
 
+## Build mode (technical modules only)
+
+An axis **orthogonal to track type**: track type decides *what* a module teaches; build mode decides *how the learner produces a technical build and what the milestone artifact is* — never what's taught, and never the passing bar. It applies only to **technical** modules; conceptual / language / practical modules ignore it. The Advisor sets one **topic-level default** at intake; it's **overridable per module**.
+
+- **manual** — learner hand-writes the build. Right for juniors and genuine fundamentals refresh. Milestone artifact = the working deliverable.
+- **agentic** — learner writes a spec/ADR, directs agents to implement, then reviews and verifies. Milestone artifact = **ADR + review reasoning + verification artifact**, not hand-written code.
+- **hybrid** — routed per module: manual on gap/weak topics, agentic on strong ones. Recommended default for experienced learners. Under hybrid, each technical module carries an explicit `manual`/`agentic` tag.
+
+**Where it's recorded:** a topic-level `Build mode (default): <mode>` line in `plan.md`, and an optional per-module `build-mode:` tag on the module entry (next to `type:`). Absent → inherits the topic default; absent entirely → `manual` (ALTER's original behavior).
+
+### Same goal, adapted mechanisms
+
+The goal is identical in every mode: **prove understanding, not just working code.** Concepts, question banks, and the acceptance **bar** are mode-independent. Only the enforcement mechanism adapts to each mode's failure mode — manual's is copy-paste/trial-and-error to working code without grasping why (and busywork for a senior on known material); agentic's is rubber-stamping plausible agent output (learning-theater).
+
+| Mechanism | manual | agentic / hybrid | notes |
+|---|:---:|:---:|---|
+| **Oral defense** at milestone (via `/interview-drill`, "technical defense" framing) | ✓ | ✓ | universal; the milestone passes only if the defense passes, **independent of whether the code works** |
+| **Self-produced verification artifact** (read/annotate an EXPLAIN plan; run and interpret a load test) | ✓ | ✓ | universal |
+| **Spec-gate** (precise spec/ADR before implementing) | light | load-bearing | manual: design-as-you-go is legitimate — don't force ADR-first |
+| **Planted-flaw review** (Tutor injects one subtle defect; learner must catch it in review) | — | ✓ | tests the review skill; needs agent-written code to plant into |
+| **Explain-back / from-scratch recall** | ✓ | — | manual's anti-copy-paste check |
+
+### Learning-acceptance test (both modes, separate from code passing)
+
+Can the learner explain **why** each non-trivial choice is correct and **what breaks** if done the other way? **No → route that topic back to `manual`.** A missed planted flaw is evidence of shallow review → same routing.
+
+### Conserved-rigor principle
+
+Moving manual → hybrid → agentic shifts enforcement weight from "did you produce it" toward "can you review and defend what was produced." Effort saved on production is repaid in defense, so different experience levels reach **equivalent rigor at different effort profiles.** Uniform enforcement would make one mode either too soft or pure busywork — don't flatten it.
+
 ## Milestones
 
-A milestone is a **concrete, checkable output that proves the learner can do the thing** — "write a recursive parser that passes these cases", not "understand recursion". Every module ends in exactly one milestone. When a module has no natural deliverable, the milestone is a **knowledge check**: a Tutor quiz the learner must pass. The learner's milestone work lives in `modules/NN-<name>/milestone/` and is what the Editor reviews.
+A milestone names the **capability proven** and the **acceptance bar** — both mode-independent — as a concrete, checkable outcome ("a recursive parser that passes these cases and whose design the learner can defend", not "understand recursion"). Every module ends in exactly one milestone. When a module has no natural deliverable, the milestone is a **knowledge check**: a Tutor quiz the learner must pass.
+
+The **artifact that proves it** is resolved by the module's build mode (see Build mode), not baked into the milestone wording: manual → the working deliverable; agentic → ADR + agent-directed implementation + the learner's review notes + a verification artifact. The bar and the oral defense are identical regardless of who typed the code. The learner's milestone work lives in `modules/NN-<name>/milestone/` and is what the Editor reviews.
 
 ## Self-documenting output
 
