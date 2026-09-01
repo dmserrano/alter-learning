@@ -28,10 +28,22 @@ However you teach, hold to these principles:
 
 The module's `type` (from `plan.md`) switches how you run:
 
-- **technical** — Write **`modules/NN-<name>/tutorial.md`**: a step-by-step build guide toward the milestone (self-doc blockquote at top; concepts interleaved with the code that uses them). Scaffold **`modules/NN-<name>/exercises/<name>/`** — a directory the learner builds in, with a `README.md` (what to build, how to verify) and starter files with clear `TODO`s, not finished answers. Then teach *through* the build: work step by step, have the learner write the code, review what they write. Set a topic-level `capstone-<name>/` exercise when one spans several modules (see `plan.md`).
+- **technical** — Write **`modules/NN-<name>/tutorial.md`**: a step-by-step build guide toward the milestone (self-doc blockquote at top; concepts interleaved with the code that uses them). **What you scaffold and what the milestone artifact is depend on the module's build mode — see *Scaffold by build mode* below.** Set a topic-level `capstone-<name>/` exercise when one spans several modules (see `plan.md`).
 - **conceptual** — Run interactive Socratic teach/test; no scaffold. Alternate short explanation with probing questions. Write **`modules/NN-<name>/guide.md`** (a study guide) only if the learner asks. Milestone is usually a written artifact or a knowledge-check quiz.
 - **language** — Run vocab/grammar drills and live conversation practice, correcting as you go. Feed missed items into the **review queue** for spaced repetition. Milestone is a conversation or translation checkpoint.
 - **practical** — Run deliberate-practice drills: learner does the thing, describes or records it, you give tight targeted feedback, they redo. Milestone is a performance artifact.
+
+## Scaffold by build mode (technical modules)
+
+For a technical module, read its build mode (`plan.md` — per-module `build-mode:`, else the topic default, else `manual`; see conventions, Build mode). **The teaching, drilling, and passing bar are identical across modes** — only the scaffold and the milestone artifact change:
+
+- **manual** — Scaffold **`modules/NN-<name>/exercises/<name>/`** as a build dir: a `README.md` (what to build, how to verify) and starter files with clear `TODO`s, not finished answers. Teach *through* the build: work step by step, have the learner write the code, review what they write. Milestone artifact = the working deliverable. Anti-cheat: during drilling, use **explain-back / from-scratch recall** — make them reproduce a core piece without copying.
+- **agentic** — Scaffold a **spec/decision template** instead of code starters: `modules/NN-<name>/exercises/<name>/SPEC.md` (requirements · chosen approach · decisions + rationale · verification plan). Teach the *concepts and the design decisions*, and coach the **spec → direct an agent → review → verify** loop rather than line-by-line coding. Then run the **planted-flaw** step: after the learner directs an agent to implement, inject **one** subtle defect (e.g. wrong isolation level, missing index, an N+1) for them to catch in review. Milestone artifact = ADR + review notes (including the flaw they caught) + a self-produced verification artifact — **not** hand-written code.
+- **hybrid** — Just read the module's `manual`/`agentic` tag and run the matching path above. No extra machinery.
+
+**Recording the planted flaw (agentic/hybrid).** The Editor needs to know what you planted to check the learner caught it, but the learner shouldn't trivially see it. Record it in `progress.md` on its own line as `<!-- spoiler for /editor: planted flaw = <what/where> -->` — honor-system, the same trust model as the flashcards "show = miss" rule. Don't put it in the milestone `README.md` the learner works from.
+
+**Universal setup (both modes).** When you create the milestone dir, tell the learner its acceptance has two parts regardless of mode: an **oral defense** (the Editor runs it via `/interview-drill` in a "technical defense" framing — "why this index? what breaks at Read Committed? where's the N+1?") and a **self-produced verification artifact** they interpret themselves (annotate an EXPLAIN plan, run and read a load test). State plainly that the milestone passes on the defense + bar **even if the code works**, and fails without them.
 
 ## Write a review sheet per module (guide.md)
 
@@ -58,7 +70,7 @@ The call-response flashcard drill lives in its own skill, **`/flashcards`** — 
 
 ## Drive to the milestone
 
-Every module ends in its milestone (see conventions). The learner's milestone work lives in **`modules/NN-<name>/milestone/`** — create it (with a `README.md` stating what the deliverable is and its acceptance check) and point them there to produce the deliverable. When a module has no natural deliverable, the milestone is a **knowledge check**: quiz the learner and only mark it passed when they actually pass. Don't declare a milestone done on the learner's say-so — verify against its acceptance check.
+Every module ends in its milestone (see conventions). The learner's milestone work lives in **`modules/NN-<name>/milestone/`** — create it (with a `README.md` stating the **milestone artifact for this module's build mode** and its acceptance check, including the oral defense + verification artifact) and point them there to produce it. When a module has no natural deliverable, the milestone is a **knowledge check**: quiz the learner and only mark it passed when they actually pass. Don't declare a milestone done on the learner's say-so — verify against its acceptance check.
 
 ## Log progress + review queue
 

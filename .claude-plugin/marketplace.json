@@ -1,0 +1,18 @@
+{
+  "name": "alter-learning",
+  "metadata": {
+    "description": "Home of the ALTER personal-university learning framework for Claude Code."
+  },
+  "owner": {
+    "name": "Dominic Serrano",
+    "url": "https://github.com/dmserrano"
+  },
+  "plugins": [
+    {
+      "name": "alter",
+      "source": "./",
+      "description": "The ALTER personal-university learning framework: Advisor, Librarian, Tutor, Editor, Roommate, and a flashcards drill.",
+      "version": "0.1.0"
+    }
+  ]
+}

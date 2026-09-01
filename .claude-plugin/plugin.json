@@ -1,0 +1,11 @@
+{
+  "name": "alter",
+  "description": "ALTER — a personal-university learning framework. Five academic roles (Advisor, Librarian, Tutor, Editor, Roommate) plus a flashcards drill turn any topic into a self-directed, spaced-repetition learning pathway captured as Markdown.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Dominic Serrano"
+  },
+  "homepage": "https://github.com/dmserrano/alter-learning",
+  "repository": "https://github.com/dmserrano/alter-learning",
+  "license": "MIT"
+}
