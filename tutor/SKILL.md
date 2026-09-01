@@ -11,7 +11,7 @@ Read [`../alter/reference/conventions.md`](../alter/reference/conventions.md) be
 
 ## Resolve topic, module, and state
 
-Find the active topic (per conventions — named slug, else most-recently-modified folder; **confirm before acting**). Read `plan.md` (the module, its `type`, its milestone), `reading-list.md` (the vetted sources to teach *from* — don't teach from thin air), and `progress.md` if it exists (to resume: what's done, what's mid-flight, what's in the review queue).
+Find the active topic (per conventions — named slug, else most-recently-modified folder; **confirm before acting**). Read `plan.md` (the module, its `type`, its milestone), `modules/NN-<name>/reading-list.md` for the module you're teaching (the vetted sources to teach *from* — don't teach from thin air; if it's missing, hand back to `/librarian`), and `progress.md` if it exists (to resume: what's done, what's mid-flight, what's in the review queue).
 
 Pick the module: the one the user named, else the current in-progress or next unstarted one. Confirm which module and where you're picking up before teaching.
 
@@ -22,7 +22,7 @@ However you teach, hold to these principles:
 - **One idea, then check.** Don't lecture in walls of text. Explain a piece, then make the learner *use* it — a question, a prediction, a line of code. Teaching without testing is just talking.
 - **Diagnose the real gap.** When they're stuck or vague, find *why* — a missing prerequisite, a wrong mental model — and fix that, not the surface symptom. Ask "why", "what would happen if", "explain it back to me".
 - **Don't accept fake understanding.** "Makes sense" isn't evidence. A correct answer to a sharp question is. Push until the concept clicks or the gap is named.
-- **Ground in real sources.** Teach from `reading-list.md` and the primary docs. For fast-moving technical detail (APIs, versions, signatures), verify against the source rather than reciting from memory — being confidently out-of-date destroys trust.
+- **Ground in real sources.** Teach from the module's `reading-list.md` and the primary docs. For fast-moving technical detail (APIs, versions, signatures), verify against the source rather than reciting from memory — being confidently out-of-date destroys trust.
 
 ## Teach by track type
 

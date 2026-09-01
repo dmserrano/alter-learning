@@ -32,13 +32,18 @@ Vet each candidate on: **credibility** (who made it, do they know the thing), **
 
 Aim for **~3–7 sources per module**, ranked, each earning its place. More than that isn't a reading list, it's the noise you're supposed to filter out. For each source capture: title + link, what it is (type), why it's here (what it uniquely gives), and where to start (chapter, section, timestamp) when that helps. Mark one as the **primary** source to start with. Briefly name notable things you deliberately left off if the learner is likely to reach for them.
 
-## Write reading-list.md
+## Write the module's reading-list.md
 
-Append to (or create) `reading-list.md` in the topic folder — one section per module, so the file accumulates as the pathway progresses. Don't overwrite other modules' sections.
+Sources are stored **per module**: write (or update in place) `modules/NN-<name>/reading-list.md` for the module you gathered — the source of truth, living beside the module that uses it. Only touch the module you sourced; other modules own their own files.
 
 - Open the file with the self-doc blockquote (`> How to use: … · owned by /librarian · next: /tutor to start learning`).
-- Per module: a `## Module NN — <title>` heading, then the ranked list. Star or label the primary source. Keep annotations tight.
+- A `## Module NN — <title>` heading, then the ranked list. Star or label the primary source. Keep annotations tight.
 - If sources were thin or the topic is contested, say so honestly rather than padding.
+- If the module dir doesn't exist yet, create it with its `README.md` (self-doc dir) per conventions.
+
+### Refresh the root index
+
+After writing the module's list, regenerate the topic-root `reading-list.md` as a **generated index**: a self-doc blockquote marking it generated (`… · owned by /alter · next: /tutor to start learning`), then one line per module linking to its `modules/NN-<name>/reading-list.md` (with the primary source noted). Don't hand-author source detail here — it's a table of contents over the per-module lists. This is the same in-place refresh the Tutor/Editor do for the README; `alter` also regenerates it in full every run (see conventions).
 
 ## prompts.md (on request)
 

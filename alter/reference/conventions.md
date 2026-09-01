@@ -13,12 +13,13 @@ Every topic is a folder in the **current working directory** — the directory t
   <topic-slug>/
     README.md            # "you are here" map — alter regenerates this every run
     plan.md              # advisor: destination, baseline, module sequence, cut-list
-    reading-list.md      # librarian: ranked vetted sources, tied to modules
+    reading-list.md      # GENERATED index of the per-module lists — alter regenerates, like README (not hand-edited)
     prompts.md           # librarian, on demand: pluggable prompts for other tools
     progress.md          # tutor: dated session log + review queue
     modules/
       NN-<name>/         # everything for one module lives here
         README.md        # what this module holds (self-doc dir)
+        reading-list.md  # librarian: ranked vetted sources for THIS module (source of truth)
         tutorial.md      # tutor, technical: step-by-step build
         guide.md         # tutor, on request or at milestone: review sheet (optional ## Flashcards for drills)
         exercises/
@@ -38,7 +39,10 @@ Every topic is a folder in the **current working directory** — the directory t
 When this layout changes, an older topic folder is brought up to date by **reconciling it against the current layout above** — no separate migration tool needed. Any ALTER skill (usually `alter`, since it already reads the whole topic) can do it on request. The procedure:
 
 1. **Read this file first** so you're moving toward the *current* layout, not a remembered one.
-2. **Detect the old shape.** Compare what's on disk to the layout above and list every file/dir that has moved. The most recent move consolidated per-module files under `modules/NN-<name>/`: `tutorial-NN.md` → `modules/NN-<name>/tutorial.md`, `guide-NN.md` → `.../guide.md`, `exercises/NN-<name>/` → `.../exercises/`, `milestones/NN-<name>/` → `.../milestone/`, `feedback/NN-<name>-review.md` → `.../review.md`. Topic-level files (`plan.md`, `reading-list.md`, `prompts.md`, `progress.md`, `roommate.md`, `capstone-<name>/`) stay put.
+2. **Detect the old shape.** Compare what's on disk to the layout above and list every file/dir that has moved. Two moves to check for, newest first:
+   - **Sources went per-module.** The single root `reading-list.md` (one `## Module NN` section per module) is now split so each module's section becomes its own source of truth at `modules/NN-<name>/reading-list.md`, and the root `reading-list.md` becomes a **generated index** linking to them. To reconcile: carve each `## Module NN — <title>` section out of the old root file into `modules/NN-<name>/reading-list.md` (add the self-doc blockquote), then regenerate the root `reading-list.md` as the index (that's `alter`'s job, done last). This is a content split, not a `git mv`.
+   - **Per-module files got consolidated** under `modules/NN-<name>/`: `tutorial-NN.md` → `modules/NN-<name>/tutorial.md`, `guide-NN.md` → `.../guide.md`, `exercises/NN-<name>/` → `.../exercises/`, `milestones/NN-<name>/` → `.../milestone/`, `feedback/NN-<name>-review.md` → `.../review.md`.
+   Topic-level files that stay put: `plan.md`, `prompts.md`, `progress.md`, `roommate.md`, `capstone-<name>/`.
 3. **Show the move plan and confirm before touching anything** — a rename table, oldest-to-newest. Moving learner work is not something to do silently.
 4. **Move with `git mv`** where the topic is a git repo (preserves history); plain move otherwise. Preserve file **content** exactly — only the path changes. Drop the now-redundant module number from filenames inside the numbered dir (`tutorial.md`, not `tutorial-03.md`).
 5. **Fix internal references.** Update relative links between the moved files (e.g. a `README.md` pointing at `../milestones/03-x/`) and add any newly-required `README.md` for a moved directory that lacks one.
